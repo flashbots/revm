@@ -312,7 +312,13 @@ impl<'a, DB: Database> EvmContext<'a, DB> {
 
         let out = match precompile {
             Precompile::Standard(fun) => fun(input_data, gas.limit()),
-            Precompile::Env(fun) => fun(input_data, gas.limit(), self.env()),
+            Precompile::Env(fun) => {
+                let mut env = self.env().clone();
+                env.msg = crate::primitives::MsgEnv {
+                    caller: inputs.context.caller,
+                };
+                fun(input_data, gas.limit(), &env)
+            }
         };
 
         let mut result = InterpreterResult {

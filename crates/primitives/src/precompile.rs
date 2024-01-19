@@ -32,6 +32,8 @@ pub enum PrecompileError {
     BlobMismatchedVersion,
     /// The proof verification failed.
     BlobVerifyKzgProofFailed,
+    // Custom precompile error
+    CustomPrecompileError(&'static str),
 }
 
 #[cfg(feature = "std")]
@@ -59,6 +61,9 @@ impl fmt::Display for PrecompileError {
             PrecompileError::BlobMismatchedVersion => write!(f, "mismatched blob version"),
             PrecompileError::BlobVerifyKzgProofFailed => {
                 write!(f, "verifying blob kzg proof failed")
+            }
+            PrecompileError::CustomPrecompileError(msg) => {
+                write!(f, "{}", msg)
             }
         }
     }

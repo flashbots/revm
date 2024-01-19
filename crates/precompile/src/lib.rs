@@ -103,6 +103,12 @@ impl fmt::Debug for Precompile {
 #[derive(Clone, Debug)]
 pub struct PrecompileWithAddress(Address, Precompile);
 
+impl PrecompileWithAddress {
+    pub const fn new(address: Address, precompile: Precompile) -> Self {
+        PrecompileWithAddress(address, precompile)
+    }
+}
+
 impl From<PrecompileWithAddress> for (Address, Precompile) {
     fn from(value: PrecompileWithAddress) -> Self {
         (value.0, value.1)

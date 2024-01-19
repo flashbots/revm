@@ -15,6 +15,21 @@ pub struct Env {
     pub block: BlockEnv,
     /// Configuration of the transaction that is being executed.
     pub tx: TxEnv,
+    /// Configuration of the message call
+    pub msg: MsgEnv,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct MsgEnv {
+    pub caller: Address,
+}
+impl Default for MsgEnv {
+    fn default() -> Self {
+        Self {
+            caller: Address::ZERO,
+        }
+    }
 }
 
 impl Env {

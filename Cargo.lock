@@ -1023,9 +1023,9 @@ dependencies = [
 
 [[package]]
 name = "ethers-core"
-version = "2.0.10"
+version = "2.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c0a17f0708692024db9956b31d7a20163607d2745953f5ae8125ab368ba280ad"
+checksum = "aab3cef6cc1c9fd7f787043c81ad3052eff2b96a3878ef1526aa446311bdbfc9"
 dependencies = [
  "arrayvec",
  "bytes",
@@ -1050,9 +1050,9 @@ dependencies = [
 
 [[package]]
 name = "ethers-providers"
-version = "2.0.10"
+version = "2.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6838fa110e57d572336178b7c79e94ff88ef976306852d8cb87d9e5b1fc7c0b5"
+checksum = "fb6b15393996e3b8a78ef1332d6483c11d839042c17be58decc92fa8b1c3508a"
 dependencies = [
  "async-trait",
  "auto_impl",

@@ -27,6 +27,16 @@ pub struct Env {
     pub block: BlockEnv,
     /// Configuration of the transaction that is being executed.
     pub tx: TxEnv,
+    /// Configuration of the current execution message
+    pub msg: MsgEnv,
+}
+
+/// The transaction environment.
+#[derive(Default, Clone, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct MsgEnv {
+    /// Message caller
+    pub caller: Address,
 }
 
 impl Env {
@@ -39,7 +49,12 @@ impl Env {
     /// Create boxed [Env].
     #[inline]
     pub fn boxed(cfg: CfgEnv, block: BlockEnv, tx: TxEnv) -> Box<Self> {
-        Box::new(Self { cfg, block, tx })
+        Box::new(Self {
+            cfg,
+            block,
+            tx,
+            msg: MsgEnv::default(),
+        })
     }
 
     /// Calculates the effective gas price of the transaction.

@@ -205,6 +205,7 @@ impl<DB: Database> EvmContext<DB> {
             _ => {}
         };
 
+        self.env.msg.caller = inputs.caller;
         if let Some(result) = self.call_precompile(&inputs.bytecode_address, &inputs.input, gas)? {
             if matches!(result.result, return_ok!()) {
                 self.journaled_state.checkpoint_commit();
